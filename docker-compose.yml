@@ -1,0 +1,31 @@
+
+services:
+  php:
+    image: php:8.2-apache
+    container_name: mon-php
+    volumes:
+      - ./www:/var/www/html
+    ports:
+      - "8080:80"
+  mysql:
+    image: mysql:8.0
+    container_name: mon-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: USER
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: mon-phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "8081:80"
+    volumes:
+      - ./phpmyadmin-override.ini:/usr/local/etc/php/conf.d/phpmyadmin-override.ini

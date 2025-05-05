@@ -1,0 +1,35 @@
+SELECT ville_nom, ville_surface FROM `villes_france_free` 
+ORDER BY ville_surface ASC
+LIMIT 5
+
+
+__
+
+SELECT ville_code_postal FROM `villes_france_free` 
+ORDER BY ville_population_2010 DESC
+LIMIT 15
+
+_____
+
+SELECT ville_departement, ville_nom FROM `villes_france_free` 
+WHERE ville_nom LIKE 'P%'
+
+___
+
+SELECT ville_departement, SUM(ville_population_2010), SUM(ville_population_1999), SUM(ville_population_2012) FROM villes_france_free
+GROUP BY ville_departement;
+
+__
+
+SELECT ville_nom, ville_population_1999 FROM `villes_france_free` WHERE ville_population_1999 > 20000;
+
+__
+
+UPDATE villes_france_free
+SET ville_longitude_dms = REPLACE(ville_longitude_dms, '+', '*')
+
+___
+
+SELECT ville_nom,REVERSE(ville_nom) AS nom_inverse
+FROM villes_france_free
+WHERE ville_departement LIKE '97%';
