@@ -33,3 +33,9 @@ ___
 SELECT ville_nom,REVERSE(ville_nom) AS nom_inverse
 FROM villes_france_free
 WHERE ville_departement LIKE '97%';
+
+____
+
+SELECT * FROM `villes_france_free` AS v
+INNER JOIN departement ON
+v.ville_departement = departement.departement_id;
