@@ -39,3 +39,30 @@ ____
 SELECT * FROM `villes_france_free` AS v
 INNER JOIN departement ON
 v.ville_departement = departement.departement_id;
+
+______
+3.0
+
+INSERT INTO `dart`(`Marque`, `Categorie`, `Prix`, `Modele`) VALUES ('bosch','lave-vaiselle','599','WIOWIOWIO')
+
+3.1
+SELECT dart.Marque, dart.Categorie, dart.Modele FROM `dart`
+3.2
+DELETE FROM `dart`
+WHERE Marque = 'indesit';
+3.3
+UPDATE dart
+SET Prix = Prix + 50
+WHERE Prix < 600;
+__________
+
+4
+CREATE TABLE pj (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(20),
+    metierpj VARCHAR(100)
+);
+CREATE TABLE metier (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    metier VARCHAR(100)
+);
