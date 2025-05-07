@@ -12,3 +12,6 @@ INSERT INTO fiche(titre, duree, sortie) VALUES
 ('Joker', 122, 2019),
 ('Sweeney todd', 116, 2007),
 ('Mononoke hime', 134, 1997)
+
+DELETE FROM fiche
+WHERE sortie < 2010 AND duree < 120
