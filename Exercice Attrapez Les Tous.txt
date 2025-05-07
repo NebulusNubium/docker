@@ -1,2 +1,6 @@
 CREATE DATABASE pokeworld
 
+CREATE TABLE type (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(20)
+);
