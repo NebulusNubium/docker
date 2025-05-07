@@ -96,7 +96,7 @@ CREATE TABLE notes (
 INSERT INTO utilisateurs (nom) VALUES
   ('Daddy'),
   ('Mommy'),
-  ('Covide'),
+  ('Covid'),
   ('David'),
   ('Holly');
 
