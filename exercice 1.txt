@@ -5,3 +5,10 @@ CREATE TABLE fiche(
     titre VARCHAR(100),
     duree INT,
     sortie INT);
+
+INSERT INTO fiche(titre, duree, sortie) VALUES
+('The Gentlemen', 113, 2020),
+('Kuzco', 75, 2000),
+('Joker', 122, 2019),
+('Sweeney todd', 116, 2007),
+('Mononoke hime', 134, 1997)
