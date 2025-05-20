@@ -49,10 +49,15 @@
         // }
 
     echo '<h2> exo 7 </h2>';
-        function pyta($a,$b,$c){
-            Math.sqrt(b * b + c * c)
-            echo
+        function pyta($b,$c){
+            echo ("a est égale à:" . sqrt($b**2 + $c**2))
         }
+
+    echo '<h2> exo 8 </h2>';
+    
+
+
+
     ?>
 
 </body>
