@@ -81,6 +81,27 @@
         echo $i . '<br>' . 'bar'. '<br>';
         } 
     }
+
+    echo '<h2> exo 11 </h2>';
+    $identitePersonne=[
+        'nom' => 'Croft',
+        'prenom' =>'Lara',
+        'metier' => 'Archéologue'
+    ];  
+    echo '<h3> C\'est un plaisir de vous voir  ' . $identitePersonne['prenom'] . $identitePersonne['nom'] . ' !(' .$identitePersonne['metier'] . ') </h3>';
+
+    echo '<h2> exo 12 </h2>';
+     $fighters=['Zelda','Samus','Bowser','Peach','Lucina'] ;
+    foreach($fighters as $fighter){
+        echo (strlen($fighter)==6) ? $fighter : "" ;
+    }
+
+    echo '<h2> exo 13 </h2>';
+
+    
+    echo '<h2> exo 14 </h2>';
+
+    echo '<h2> exo 15 </h2>';
     ?>
 
 </body>
