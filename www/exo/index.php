@@ -40,8 +40,8 @@
         }
         echo '<h2> exo 6 </h2>';
             for ($i=0; $i <=20; $i++){
-                if (estPair($i) true) {
-                    echo $i . '<br>'
+                if (estPair($i)== true) {
+                    echo $i . '<br>';
                 }
         }
         //  for ($i=0; $i <=20; $i++){
@@ -50,14 +50,37 @@
 
     echo '<h2> exo 7 </h2>';
         function pyta($b,$c){
-            echo ("a est égale à:" . sqrt($b**2 + $c**2))
+            echo ("a est égale à:" . sqrt($b**2 + $c**2));
         }
 
     echo '<h2> exo 8 </h2>';
+    $heure=15;
+    if($heure<=12 && $heure>=0){
+        echo "matin";
+    } else if ($heure>=12 && $heure<19) {
+        echo "aprem";
+    } else if ($heure>=19 && $heure<24) {
+        echo "soir";
+    } else {
+        echo "invalid input";
+    }
+
+    echo '<h2> exo 9 </h2>';
+        // estPair($estPair){
+        //     $estPair % 2 == 0 ? true : false;
+        // }
+
+    echo '<h2> exo 10 </h2>';
     
-
-
-
+    for ($i=1; $i<=100; $i++) {
+        if( $i % 3 === 0 && $i % 5 === 0) {
+        echo $i . '<br>' . 'foobar'. '<br>' ;
+        } else if ($i % 3 === 0){
+        echo $i . '<br>' . 'foo'. '<br>';
+        } else if($i % 5 === 0){
+        echo $i . '<br>' . 'bar'. '<br>';
+        } 
+    }
     ?>
 
 </body>
