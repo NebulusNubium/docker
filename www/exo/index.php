@@ -1,3 +1,4 @@
+<?php ob_start() ?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,47 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- //exo 1 // -->
-    <?php echo '<h1>EXO</h1>'; 
+ <?php echo '<h1>EXO</h1>';
+ //exo Requete 1 http://localhost:8080/exo/index.php?ville=Paris&transport=covoit// -->
+    echo '<h2>Exo Requette 1</h2>';
+    echo 'La ville choisie est ' . $_GET['ville'] . ' et le voyage se fera en ' . $_GET['transport'] . ' !' . '<br>';
+
+    echo '<h2>Exo Requette 2</h2>';
+    echo '<form action= "index.php" method="post"> <input type="text" name="animal"> </form>';
+    echo 'Votre animal favori est ' . $_POST['animal'] . '<br>';
+
+    echo '<h2> Exo req 3 </h2>';
+    echo '<form action= "index.php" method="post"> <input type="color" name="color"> <input type="text" name="pseudo"> <button>valider</button> </form>';
+    echo $_POST['pseudo'] . '<br>';
+    echo '<style> body {background-color:' . $_POST['color'] . ';} </style>';
+
+    echo '<h2> Exo req 4 </h2>';
+    echo '<form action= "index.php" method="post"> <input type="number" name="roll"> <button>valider</button> </form>';
+    function roll(){
+        $result= rand(1,$_POST['roll']);
+        if($_POST['roll'] % 6 ==0){
+            return $result;
+        } else {
+            '<form action= "index.php?error=lol" method="get">';
+        }
+        
+    }
+    echo roll() . '<br>';
+
+    echo '<h2> Exo req 5 </h2>';
+        echo '<form action= "index.php" method="post"> <input type="text" name="pseudo"> <input type="text" name="mdp"> <button>register</button> <button>login</button>  </form>';
+        $pseudoDTB=  'petitchat';
+        $mdpDTB= 'grosmatou';
+        if(isset($_POST['pseudo']) && isset($_POST['mdp'])){
+            if($_POST['pseudo'] === $pseudoDTB && $_POST['mdp'] === $mdpDTB){
+            header('location:https://github.com/NebulusNubium');
+            } else {
+            header('location:index.php?error=lol');
+            }
+        }
+
+   //exo Algo 1 // -->
+    echo '<h2> exo algo 1 </h2>';
     for ($i=0; $i <26; $i++){
         echo $i . '<br>';
     }
@@ -101,16 +141,18 @@
     echo min($array);
 
     echo '<h2> exo 14 </h2>';
-    $array=[1045, 15, 20, 30, 50, 100, 9029];
-    for ($i=0; $i <6; $i++){
-        $array=[1045, 15, 20, 30, 50, 100, 9029];
-        min($array)
-        $newArray[$i]=[]
-    }
+    // $array=[1045, 15, 20, 30, 50, 100, 9029];
+    // for ($i=0; $i <6; $i++){
+    //     $array=[1045, 15, 20, 30, 50, 100, 9029];
+    //     min($array)
+    //     $newArray[$i]=[]
+    // }
     // asort($array)
     // foreach
     echo '<h2> exo 15 </h2>';
-    
+
+
+
     ?>
 
 </body>
