@@ -46,10 +46,7 @@
             header('location:index.php?error=lol');
             }
         }
-        
-        echo $hash;
-        
-
+    echo '<h2> Exo req 6 </h2>';
 
    //exo Algo 1 // -->
     echo '<h2> exo algo 1 </h2>';
