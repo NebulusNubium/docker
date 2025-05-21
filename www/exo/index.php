@@ -97,11 +97,20 @@
     }
 
     echo '<h2> exo 13 </h2>';
+    $array=[1045, 15, 20, 30, 50, 100, 9029];
+    echo min($array);
 
-    
     echo '<h2> exo 14 </h2>';
-
+    $array=[1045, 15, 20, 30, 50, 100, 9029];
+    for ($i=0; $i <6; $i++){
+        $array=[1045, 15, 20, 30, 50, 100, 9029];
+        min($array)
+        $newArray[$i]=[]
+    }
+    // asort($array)
+    // foreach
     echo '<h2> exo 15 </h2>';
+    
     ?>
 
 </body>
