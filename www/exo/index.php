@@ -37,14 +37,19 @@
     echo '<h2> Exo req 5 </h2>';
         echo '<form action= "index.php" method="post"> <input type="text" name="pseudo"> <input type="text" name="mdp"> <button>register</button> <button>login</button>  </form>';
         $pseudoDTB=  'petitchat';
-        $mdpDTB= 'grosmatou';
+        $mdpDTB= 'ghibli';
+        $hash = password_hash($_POST['mdp'], PASSWORD_ARGON2ID);
         if(isset($_POST['pseudo']) && isset($_POST['mdp'])){
-            if($_POST['pseudo'] === $pseudoDTB && $_POST['mdp'] === $mdpDTB){
+            if($_POST['pseudo'] === $pseudoDTB && password_verify($mdpDTB, $hash)){
             header('location:https://github.com/NebulusNubium');
             } else {
             header('location:index.php?error=lol');
             }
         }
+        
+        echo $hash;
+        
+
 
    //exo Algo 1 // -->
     echo '<h2> exo algo 1 </h2>';
