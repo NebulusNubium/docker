@@ -55,11 +55,12 @@
         $result= $_POST['number2']*$_POST['number1'];
         echo $result;
     }
-        if (isset($_POST['number1']) && isset($_POST['number2']) && isset($_POST['diviser']) && $_POST['number1'] !== 0 || $_POST['number2'] !== 0){
-        $result = 0;
+        if (isset($_POST['number1']) && isset($_POST['number2']) && isset($_POST['diviser']) && $_POST['number2'] != 0){
         $result= $_POST['number1']/$_POST['number2'];
         echo $result;
-    } 
+    }  else {
+        echo 'invalid number';
+    }
         if (isset($_POST['number1']) && isset($_POST['number2']) && isset($_POST['soustraire'])){
         
         $result= $_POST['number1']-$_POST['number2'];
@@ -70,7 +71,43 @@
         $result= $_POST['number1']+$_POST['number2'];
         echo $result;
     }
-
+    echo '<h2> Exo req 7 </h2>';
+    echo '<h2> Exo req 8 </h2>';
+    $score=0;
+    echo '<form><label for="question">What is the color of courgettes?</label>
+                <label><input type="radio" name="option1" value="red">Red</label>
+                <label><input type="radio" name="option2" value="blue">Blue</label>
+                <label><input type="radio" name="option3" value="green">Green</label>
+                <label><input type="radio" name="option4" value="yellow">yellow</label>
+                <button type="submit" name="submit">submit</button>
+</form>';
+        if (isset($_POST['option3'])){
+        $score= $score+1;
+        echo 'correct!';
+    } else { echo 'False!';}
+    echo '<form><label for="question">What is the color of courgettes?</label>
+                <label><input type="radio" name="Q2option1" value="red">Red</label>
+                <label><input type="radio" name="Q2option2" value="blue">Blue</label>
+                <label><input type="radio" name="Q2option3" value="green">Green</label>
+                <label><input type="radio" name="Q2option4" value="yellow">yellow</label>
+</form>';
+        if (isset($_POST['Q2option3'])){
+        $score= $score+1;
+        echo 'correct!';
+    } else { echo 'False!';}
+    echo '<form><label for="question">What is the color of courgettes?</label>
+                <label><input type="radio" name="Q3option1" value="red">Red</label>
+                <label><input type="radio" name="Q3option2" value="blue">Blue</label>
+                <label><input type="radio" name="Q3option3" value="green">Green</label>
+                <label><input type="radio" name="Q3option4" value="yellow">yellow</label>
+</form>';
+        if (isset($_POST['Q3option3']) ){
+        $score=$score+1;
+        echo 'correct!';
+    } else { echo 'False!';}
+    echo 'Score:' .$score;
+    echo '<h2> Exo req 9 </h2>';
+    echo '<h2> Exo req 10 </h2>';
    //exo Algo 1 // -->
     echo '<h2> exo algo 1 </h2>';
     for ($i=0; $i <26; $i++){
