@@ -47,6 +47,29 @@
             }
         }
     echo '<h2> Exo req 6 </h2>';
+        echo '<form action= "index.php" method="post">  <input type="number" name="number1">  <input type="number" name="number2">';
+        echo '<button type="submit" name="multiplier">multiplier</button> <button type="submit" name="soustraire">soustraire</button> <button type="submit" name="diviser">diviser</button> <button type="submit" name="additionner">additionner</button>';
+        $result = 0;
+        if (isset($_POST['number1']) && isset($_POST['number2']) && isset($_POST['multiplier'])){
+        
+        $result= $_POST['number2']*$_POST['number1'];
+        echo $result;
+    }
+        if (isset($_POST['number1']) && isset($_POST['number2']) && isset($_POST['diviser']) && $_POST['number1'] !== 0 || $_POST['number2'] !== 0){
+        $result = 0;
+        $result= $_POST['number1']/$_POST['number2'];
+        echo $result;
+    } 
+        if (isset($_POST['number1']) && isset($_POST['number2']) && isset($_POST['soustraire'])){
+        
+        $result= $_POST['number1']-$_POST['number2'];
+        echo $result;
+    }
+        if (isset($_POST['number1']) && isset($_POST['number2']) && isset($_POST['additionner'])){
+        
+        $result= $_POST['number1']+$_POST['number2'];
+        echo $result;
+    }
 
    //exo Algo 1 // -->
     echo '<h2> exo algo 1 </h2>';
