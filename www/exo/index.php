@@ -187,15 +187,25 @@ $secret = $_SESSION['number'];
         }
     endif; ?>
 
-   <h2> Exo req 10 </h2>
-
+    <!-- Exo requête 10 -->
+   <h2> Exo requête 10 </h2>
+    <form action="index.php" method="post">
+    <p>Uploadez votre image:</p>
+    <input type="file" name="file" id="file">
+    <input type="submit" value="submit" name="submit">
+    </form>
+<?php 
+    $allowedExts  = ['jpg','jpeg','png','gif','pdf'];
+    if(isset($_FILES['file']) && isset($_POST['submit']) $_FILES['file']['extension']==$allowedExts>){
+        
+    }
+?>
 <?php
-
 // Exo Algo 1
 for ($i = 0; $i < 26; $i++) {
     echo $i . '<br>';
 }
-?>
+ ?>
 
 <h2>Exo 2</h2>
 <?php
