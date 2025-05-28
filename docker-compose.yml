@@ -1,12 +1,15 @@
-
 services:
   php:
-    image: php:8.2-apache
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: mon-php
     volumes:
       - ./www:/var/www/html
+      - ./php-override.ini:/usr/local/etc/php/conf.d/99-override.ini
     ports:
       - "8080:80"
+
   mysql:
     image: mysql:8.0
     container_name: mon-mysql
@@ -14,10 +17,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: testdb
-      MYSQL_USER: USER
+      MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
       - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql 
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: mon-phpmyadmin
@@ -29,3 +35,6 @@ services:
       - "8081:80"
     volumes:
       - ./phpmyadmin-override.ini:/usr/local/etc/php/conf.d/phpmyadmin-override.ini
+
+volumes:
+  mysql_data:

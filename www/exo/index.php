@@ -18,7 +18,9 @@
             La ville choisie est <strong><?= $ville ?></strong>
             et le voyage se fera en <strong><?= $transport ?></strong> !
         </p>
-    <?php endif; ?>
+    <?php endif;
+    echo $lolilol; 
+    var_dump($lolilol)?>
 
     <h2>Exo Requête 2</h2>
     <?php if (isset($_POST['animal'])):
@@ -189,16 +191,19 @@ $secret = $_SESSION['number'];
 
     <!-- Exo requête 10 -->
    <h2> Exo requête 10 </h2>
-    <form action="index.php" method="post">
+    <form action="index.php" method="post" enctype="multipart/form-data">
     <p>Uploadez votre image:</p>
     <input type="file" name="file" id="file">
     <input type="submit" value="submit" name="submit">
     </form>
+    
 <?php 
+    
     $allowedExts  = ['jpg','jpeg','png','gif','pdf'];
-    if(isset($_FILES['file']) && isset($_POST['submit']) $_FILES['file']['extension']==$allowedExts>){
+    if(isset($_FILES['file']) && isset($_POST['submit']) && $_FILES['file']['extension']==$allowedExts){
         
     }
+    var_dump($_FILES);
 ?>
 <?php
 // Exo Algo 1
