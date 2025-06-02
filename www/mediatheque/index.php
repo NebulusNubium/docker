@@ -1,11 +1,14 @@
+<?php session_start(); ?>
+<?php ob_start(); ?>
+
 <?php
-    ob_start();
     $bdd = new PDO('mysql:host=mysql;dbname=gens;charset=utf8','root','root');
         if (isset($_POST['nom']) && isset($_POST['prenom'])){
             $nom    = htmlspecialchars(trim($_POST['nom']));
             $prenom = htmlspecialchars(trim($_POST['prenom']));
             $pseudo = htmlspecialchars(trim($_POST['pseudo']));
             $mdp = htmlspecialchars(trim($_POST['mdp']));
+            $hashing = password_hash($mdp, PASSWORD_ARGON2ID);
             $requestRead = $bdd->prepare('SELECT prenom, nom, username, mdp FROM users');
             $requestRead->execute(array());
             $requestWrite = $bdd->prepare('INSERT INTO users(prenom, nom, username, mdp)
@@ -14,7 +17,7 @@
                 'prenom'=>$prenom,
                 'nom'=>$nom,
                 'username'=>$pseudo,
-                'mdp'=>$mdp
+                'mdp'=>$hashing
         ]);
         }
           
@@ -47,7 +50,7 @@
         <label>Mot de passe : <input type="password" name="mdp" placeholder="Mot de passe"></label><br>            
             <button type="submit">Envoyer</button>
     </form>
-</form>
+    <?php var_dump($_SESSION['user']); ?>
 
 </body>
 </html>

@@ -1,21 +1,22 @@
- <?php
-    ob_start();
+<?php session_start(); ?>
+<?php ob_start(); ?>
+<?php
+
  $bdd = new PDO('mysql:host=mysql;dbname=gens;charset=utf8','root','root');
  if (isset($_POST['pseudo']) && isset($_POST['mdp'])){
             $pseudoInput = $_POST['pseudo'];
-            $mdpInput = $_POST['mdp'];
+            $mdpInput = htmlspecialchars(trim($_POST['mdp']));
             $credentialsDTB = $bdd->prepare('SELECT username, mdp 
                         FROM users
                         WHERE username = :pseudo');
 
-            $credentialsDTB->execute(array('username'=>$pseudoInput));
-        var_dump($credentialsDTB);
+            $credentialsDTB->execute(array('pseudo'=>$pseudoInput));
+        
         $data = $credentialsDTB->fetch();
         var_dump($data);
-            $hash      = password_hash($mdpInput, PASSWORD_ARGON2ID);
-        if (password_verify($credentialsDTB[1], $hash)){
-            header('Location: https://github.com/NebulusNubium');
-            exit;
+        if (password_verify($mdpInput,$data['mdp'])){
+            $_SESSION['user']= $pseudoInput;
+            header('Location:index.php');
         }else{
             header('Location: index.php?error=lol');
             exit;
