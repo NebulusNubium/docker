@@ -23,9 +23,12 @@
             'synopsys'=>$synopsys,
             'genre'=>$genre
     ]);
-
     $realisateur= htmlspecialchars($_POST['realisateur']);
     $titre= htmlspecialchars($_POST['titre']);
+        while($data= $requestWrite->fetch()){
+        echo $data;
+            
+    }
   }
 
     ?>

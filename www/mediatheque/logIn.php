@@ -4,22 +4,22 @@
 
  $bdd = new PDO('mysql:host=mysql;dbname=gens;charset=utf8','root','root');
  if (isset($_POST['pseudo']) && isset($_POST['mdp'])){
-            $pseudoInput = $_POST['pseudo'];
-            $mdpInput = htmlspecialchars(trim($_POST['mdp']));
-            $credentialsDTB = $bdd->prepare('SELECT username, mdp 
-                        FROM users
-                        WHERE username = :pseudo');
+    $pseudoInput = $_POST['pseudo'];
+    $mdpInput = htmlspecialchars(trim($_POST['mdp']));
+    $credentialsDTB = $bdd->prepare('SELECT username, mdp 
+                FROM users
+                WHERE username = :pseudo');
 
-            $credentialsDTB->execute(array('pseudo'=>$pseudoInput));
-        
-        $data = $credentialsDTB->fetch();
-        var_dump($data);
-        if (password_verify($mdpInput,$data['mdp'])){
-            $_SESSION['user']= $pseudoInput;
-            header('Location:index.php');
-        }else{
-            header('Location: index.php?error=lol');
-            exit;
+    $credentialsDTB->execute(array('pseudo'=>$pseudoInput));
+    
+    $data = $credentialsDTB->fetch();
+    var_dump($data);
+    if (password_verify($mdpInput,$data['mdp'])){
+        $_SESSION['user']= $pseudoInput;
+        header('Location:index.php');
+    }else{
+        header('Location: index.php?error=lol');
+        exit;
     }}?>
 
 <!DOCTYPE html>

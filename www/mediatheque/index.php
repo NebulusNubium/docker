@@ -50,7 +50,9 @@
         <label>Mot de passe : <input type="password" name="mdp" placeholder="Mot de passe"></label><br>            
             <button type="submit">Envoyer</button>
     </form>
-    <?php var_dump($_SESSION['user']); ?>
+    <?php var_dump($_SESSION['user']);
+    echo 'Bonjour ' . $_SESSION['user'] . ' !' ?>
+    
 
 </body>
 </html>
