@@ -20,14 +20,16 @@
                 'mdp'=>$hashing
         ]);
         }
-          
+    
+        $requestRead = $bdd->prepare('SELECT titre, realisateur, dure, genre, synopsys 
+                                    FROM fiche');
 
-
-
-
-
-
-
+    $requestRead->execute(array());
+    var_dump($requestRead);
+    for($i=0; $i<3; $i++){
+        $data= $requestRead->fetch();
+    echo '<br> Titre du film: ' . $data['titre'] .' '. 'Nom du réalisateur: ' . $data['realisateur'] .' '. 'Durée du film: ' . $data['dure'] .'min '. 'Genre du film: ' . $data['genre'] .' '
+;}
     ?>
 <!DOCTYPE html>
 <html lang="en">

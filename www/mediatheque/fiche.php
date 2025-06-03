@@ -27,7 +27,7 @@
     $titre= htmlspecialchars($_POST['titre']);
         while($data= $requestWrite->fetch()){
         echo $data;
-            
+
     }
   }
 
@@ -41,6 +41,13 @@
     <title>fiche</title>
 </head>
 <body id="fiche">
+    <nav>
+        <ul>
+            <li><a href="film.php">Les Films</a></li>
+            <li><a href="index.php">L'accueil</a></li>
+            <li><a href="login.php">Register</a></li>
+        </ul>
+    </nav>
     <form action="fiche.php" method="post">
             <input type="text" name="titre" placeholder="Entrez un titre">
             <input type="text" name="realisateur" placeholder="Entrez un realisateur">    
