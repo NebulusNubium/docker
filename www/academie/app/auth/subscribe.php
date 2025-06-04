@@ -63,7 +63,22 @@ $request->execute([
         <input type="password" name="password" id="password">
         <label for="passwordConfirm">Confirmez votre mot de passe</label>
         <input type="password" name="passwordConfirm" id="passwordConfirm">
-        <button>s'inscrire</button>
+
     </form>
+
+    <h2>Choisis tes éléments</h2>
+    <form>
+        <input type="checkbox" id="element1" name="element1">
+        <label for="element1"> Feu</label>
+        <input type="checkbox" id="element2" name="element2">
+        <label for="element2"> Eau</label>
+        <input type="checkbox" id="element3" name="element3">
+        <label for="element3"> Lumière</label>
+        <input type="checkbox" id="element4" name="element4">
+        <label for="element4"> Air</label>
+        <input type="checkbox" id="element5" name="element5">
+        <label for="element5"> Terre</label><br>
+        <button>s'inscrire</button>
+    </form> 
 </body>
 </html>

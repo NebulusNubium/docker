@@ -1,4 +1,5 @@
-<?php include('../academie/app/includes/nav.php')?>
+<?php include('../academie/app/includes/nav.php');
+var_dump($_SESSION)?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to my Academy, <?php echo $_SESSION['user'] ?></h1>
+    <h1>Welcome to my Academy, <?php echo $_SESSION['username'] ?></h1>
 </body>
 </html>
