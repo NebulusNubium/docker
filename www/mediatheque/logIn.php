@@ -1,7 +1,10 @@
 <?php session_start(); ?>
 <?php ob_start(); ?>
 <?php
-
+    if($_GET['status']=='logout'){
+        session_unset();
+        session_destroy();
+    }
  $bdd = new PDO('mysql:host=mysql;dbname=gens;charset=utf8','root','root');
  if (isset($_POST['pseudo']) && isset($_POST['mdp'])){
     $pseudoInput = $_POST['pseudo'];
@@ -20,8 +23,9 @@
     }else{
         header('Location: index.php?error=lol');
         exit;
-    }}?>
-
+    }}
+    var_dump($_SESSION['user']);?>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>

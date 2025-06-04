@@ -1,5 +1,10 @@
 <?php
+    session_start();
     ob_start();
+        if($_GET['status']=='logout'){
+        session_unset();
+        session_destroy();
+    }
  $bdd = new PDO('mysql:host=mysql;dbname=gens;charset=utf8','root','root');
     if (isset($_POST['realisateur']) && isset($_POST['titre']) && isset($_POST['dure']) && isset($_POST['synopsys']) && isset($_POST['genre']) ){
         $realisateur = htmlspecialchars(trim($_POST['realisateur']));
@@ -7,30 +12,33 @@
         $dure = htmlspecialchars(trim($_POST['dure']));
         $synopsys = htmlspecialchars(trim($_POST['synopsys']));
         $genre = htmlspecialchars(trim($_POST['genre']));
-
-        $requestRead = $bdd->prepare('SELECT titre, realisateur, dure, genre, synopsys 
+        $user= $_SESSION['user'];
+        var_dump($user);
+        
+        $requestRead = $bdd->prepare('SELECT titre, realisateur, dure, genre, synopsys, user 
                                       FROM fiche');
 
         $requestRead->execute(array());
 
-        $requestWrite = $bdd->prepare('INSERT INTO fiche(titre, realisateur, dure, genre, synopsys)
-                                       VALUES(:titre,:realisateur, :dure, :genre, :synopsys)');
+        $requestWrite = $bdd->prepare('INSERT INTO fiche(titre, realisateur, dure, genre, synopsys, user)
+                                       VALUES(:titre,:realisateur, :dure, :genre, :synopsys, :user)');
 
         $requestWrite->execute([
             'titre'=>$titre,
             'realisateur'=>$realisateur,
             'dure'=>$dure,
             'synopsys'=>$synopsys,
-            'genre'=>$genre
+            'genre'=>$genre,
+            'user'=>$user
     ]);
-    $realisateur= htmlspecialchars($_POST['realisateur']);
-    $titre= htmlspecialchars($_POST['titre']);
+    
+    
         while($data= $requestWrite->fetch()){
         echo $data;
 
     }
   }
-
+  var_dump($data['user']);
     ?>
 
 <!DOCTYPE html>

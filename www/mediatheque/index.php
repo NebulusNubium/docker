@@ -3,6 +3,10 @@
 
 <?php
     $bdd = new PDO('mysql:host=mysql;dbname=gens;charset=utf8','root','root');
+    if($_GET['status']=='logout'){
+        session_unset();
+        session_destroy();
+    }
         if (isset($_POST['nom']) && isset($_POST['prenom'])){
             $nom    = htmlspecialchars(trim($_POST['nom']));
             $prenom = htmlspecialchars(trim($_POST['prenom']));
@@ -42,6 +46,7 @@
         <ul>
             <li><a href="../mediatheque/fiche.php">fiche de film</a></li>
             <li><a href="logIn.php">Log In</a></li>
+            <li><a href="logIn.php?status=logout">Log Out</a></li>
         </ul>
     </nav>
     <form action="index.php" method="post">
