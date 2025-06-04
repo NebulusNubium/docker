@@ -1,4 +1,4 @@
-<?php include 'nav.php'?>
+<?php include('../academie/app/includes/nav.php')?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Welcome to my Academy, <?php echo $_SESSION['user'] ?></h1>
 </body>
 </html>
