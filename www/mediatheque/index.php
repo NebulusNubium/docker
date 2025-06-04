@@ -21,15 +21,14 @@
         ]);
         }
     
-        $requestRead = $bdd->prepare('SELECT titre, realisateur, dure, genre, synopsys 
-                                    FROM fiche');
+        $requestRead = $bdd->prepare('SELECT id,titre, realisateur, dure, genre, synopsys 
+                                    FROM fiche
+                                    ORDER BY id DESC
+                                    LIMIT 3');
 
     $requestRead->execute(array());
     var_dump($requestRead);
-    for($i=0; $i<3; $i++){
-        $data= $requestRead->fetch();
-    echo '<br> Titre du film: ' . $data['titre'] .' '. 'Nom du réalisateur: ' . $data['realisateur'] .' '. 'Durée du film: ' . $data['dure'] .'min '. 'Genre du film: ' . $data['genre'] .' '
-;}
+
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +54,10 @@
     <?php var_dump($_SESSION['user']);
     echo 'Bonjour ' . $_SESSION['user'] . ' !' ?>
     
-
+    
+    <?php 
+        while($data=$requestRead->fetch()){ 
+          echo '<br> Titre du film: ' . $data['titre'] .' '. 'Nom du réalisateur: ' . $data['realisateur'] .' '. 'Durée du film: ' . $data['dure'] .'min '. 'Genre du film: ' . $data['genre'] . '<button><a href="synopsys.php?id=' . $data['id'].">Voir Plus</a></button>'";}
+    ?>
 </body>
 </html>
