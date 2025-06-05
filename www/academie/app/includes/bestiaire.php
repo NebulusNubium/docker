@@ -1,13 +1,17 @@
-<?php include 'nav.php'?>
+<?php include('nav.php');
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+?>
 <body>
-    
+    <h1>Bestiaire</h1>
+    <div class="creature-container">
+        <h2>Creature</h2>
+        <div><h3>image</h3></div>
+        <div class="description"><p>description</p></div>
+        <div class="btn">
+            <button>Ajouter</button>
+            <button>Modifier</button>
+            <button>Supprimer</button>
+        </div>
+    </div>
 </body>
 </html>

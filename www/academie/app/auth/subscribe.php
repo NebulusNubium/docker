@@ -38,15 +38,8 @@ $request->execute([
     }
     } 
 
-
-?>
-
-<?php include('../includes/head.php'); ?>
-<body>
-    <h1>Inscription</h1>
-    
-    <?php if(isset($_GET['error'])){ ?>
-       <?php  switch($_GET['error']){
+    if(isset($_GET['error'])){ 
+        switch($_GET['error']){
                 case 1:
                     echo "<p class='error'>Vos mots de passe ne correspondent pas</p>";
                     break;
@@ -54,20 +47,42 @@ $request->execute([
                     echo "<p class='error'>Ce nom d'utilisateur existe déjà</p>";
                     break;
             }
-        } ?>
+        }
 
+    //        // requête join user-elements
+    // $elementsJoin = $bdd->prepare('  SELECT u.id AS user_id, u.username AS username,
+    //             GROUP_CONCAT(e.id 
+    //                 ORDER BY e.id SEPARATOR ", ") 
+    //                                 AS element_ids,
+    //             GROUP_CONCAT(e.nom 
+    //                 ORDER BY e.nom SEPARATOR ", ") 
+    //                                 AS element_names
+    //                                     FROM user_elements as ue
+    //                                     LEFT JOIN users AS u
+    //                                         ON ue.user_id = u.id
+    //                                     LEFT JOIN elements AS e
+    //                                         ON ue.element_id = e.id
+    //                 GROUP BY u.id, u.username'
+    //                             );
+    //         $elements->execute(array());
+    //         $data = $elements->fetch();
+    // $elementsWrite = $bdd->prepare(' INSERT INTO ue(user_id, e.id)
+    //                                 Values($_SESSION['username'],$_POST['element']')
+?>
+
+<?php include('../includes/head.php'); ?>
+<body>
+    <h1>Inscription</h1>
+    
+        <!-- idéalement, faire une boucle while pour lire tous les éléments sur la DTB et créer les checkbox au fur et à mesure, au cas où l'admin veut rajouter des éléments -->
+    <h3>Crées ton compte et désignes tes éléments</h3>
     <form action="subscribe.php" method="post">
         <label for="username">Votre nom d'utilisateur</label>
         <input type="text" name="username" id="username">
         <label for="password">Votre mot de passe</label>
         <input type="password" name="password" id="password">
         <label for="passwordConfirm">Confirmez votre mot de passe</label>
-        <input type="password" name="passwordConfirm" id="passwordConfirm">
-
-    </form>
-
-    <h2>Choisis tes éléments</h2>
-    <form>
+        <input type="password" name="passwordConfirm" id="passwordConfirm"><br>
         <input type="checkbox" id="element1" name="element1">
         <label for="element1"> Feu</label>
         <input type="checkbox" id="element2" name="element2">
@@ -79,6 +94,6 @@ $request->execute([
         <input type="checkbox" id="element5" name="element5">
         <label for="element5"> Terre</label><br>
         <button>s'inscrire</button>
-    </form> 
+    </form>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php include('../academie/app/includes/nav.php');
+include('../academie/app/includes/head.php');
 var_dump($_SESSION)?>
 
 <!DOCTYPE html>
@@ -9,6 +10,9 @@ var_dump($_SESSION)?>
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to my Academy, <?php echo $_SESSION['username'] ?></h1>
+    <h1>Welcome to My Ludo Academia, <?php 
+    if(isset($_SESSION['username'])){
+        echo $_SESSION['username'] ;
+    }else{echo 'feel free to register!';} ?></h1>
 </body>
 </html>
