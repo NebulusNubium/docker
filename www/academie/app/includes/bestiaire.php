@@ -1,6 +1,4 @@
-<?php include('nav.php');
-
-?>
+<?php include('nav.php');?>
 <body>
     <h1>Bestiaire</h1>
     <div class="creature-container">
@@ -13,5 +11,6 @@
             <button>Supprimer</button>
         </div>
     </div>
+    <?php include('footer.php')?>
 </body>
 </html>

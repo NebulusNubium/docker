@@ -95,5 +95,7 @@ $request->execute([
         <label for="element5"> Terre</label><br>
         <button>s'inscrire</button>
     </form>
+
+    <?php include('footer.php')?>
 </body>
 </html>

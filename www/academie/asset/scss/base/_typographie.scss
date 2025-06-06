@@ -1,0 +1,10 @@
+@use "../abstract/variables" as variable;
+
+@font-face {
+    font-family: variable.$police-principale;
+    src: url(../fonts/DMsans/DMSans-Regular.ttf);
+}
+@font-face {
+    font-family: variable.$police-secondaire;
+    src: url(../../fonts/DMsans/DMSans-Bold.ttf);
+}
