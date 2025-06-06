@@ -52,9 +52,15 @@ $userId = $bdd->lastInsertId();
 ?>
 
 <?php 
+
+//join
+    $joining= $bdd->prepare('SELECT user_id as ui, element_id as ei
+                             FROM user_elements')
+
+//readelements
     $readElements= $bdd->query('SELECT * FROM elements');
     $elements = $readElements->fetchAll();
-    if(isset($_POST['titre'])){
+    if(isset($_POST['element'])){
         //si champ rempli, alors on stock
         $elementsSelected=$_POST['element'];
 
@@ -78,17 +84,14 @@ $userId = $bdd->lastInsertId();
         <input type="password" name="password" id="password">
         <label for="passwordConfirm">Confirmez votre mot de passe</label>
         <input type="password" name="passwordConfirm" id="passwordConfirm"><br>
-    </form>
 
-    
-     <form action="subscribe.php" method="post">
         <!-- JE BOUCLE MA LISTE DES ELEMENTS DE BDD POUR EN FAIRE AUTANT DE CHECKBOX -->
         <?php foreach($elements as $element) : ?>
             <label for="<?= $element['nom'] ?>"><?= $element['nom'] ?></label>
             <input type="checkbox" id="<?= $element['nom'] ?>" name="element[]" value="<?= $element['id'] ?>">
         <?php endforeach ?>
 
-        <button>Register</button>
+        <button type="submit">Register</button>
      </form>
 
     <?php include('footer.php')?>
