@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+if(isset($_SESSION)){
+    echo 'Hi!';
+}else{session_start();}
 
+$bdd = new PDO('mysql:host=mysql;dbname=academie;charset=utf8', 'root', 'root');
+ob_start();
+?>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/academie/asset/css/style.css">
     <title>My Ludo Academia</title>
+    <link rel="stylesheet" href="/academie/asset/css/style.css">
 </head>
+<body>

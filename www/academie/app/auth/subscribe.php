@@ -1,12 +1,12 @@
 <?php 
-// Methode alternative au isset qui permet de vérifier si des requêtes de type POST ont bien été envoyé
-include('../includes/nav.php') ;
+include_once('../includes/head.php');
+include_once('../includes/nav.php') ;
 if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['passwordConfirm'])){
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
     $passwordConfirm = htmlspecialchars($_POST['passwordConfirm']);
 
-    // REQUETE read qui va permettre de lire la table user
+
     $request = $bdd->prepare('  SELECT username, password
                                 FROM users 
                                 WHERE username = :username '
@@ -33,11 +33,12 @@ $request->execute([
     'password' => $passwordCrypt,
     'role'     => 'user'
 ]);
+$userId = $bdd->lastInsertId();
     header('location:/academie/index.php?success=4');}else{
         header('location:subscribe.php?error=1');
     }
     } 
-
+$userId = $bdd->lastInsertId();
     if(isset($_GET['error'])){ 
         switch($_GET['error']){
                 case 1:
@@ -48,29 +49,23 @@ $request->execute([
                     break;
             }
         }
-
-    //        // requête join user-elements
-    // $elementsJoin = $bdd->prepare('  SELECT u.id AS user_id, u.username AS username,
-    //             GROUP_CONCAT(e.id 
-    //                 ORDER BY e.id SEPARATOR ", ") 
-    //                                 AS element_ids,
-    //             GROUP_CONCAT(e.nom 
-    //                 ORDER BY e.nom SEPARATOR ", ") 
-    //                                 AS element_names
-    //                                     FROM user_elements as ue
-    //                                     LEFT JOIN users AS u
-    //                                         ON ue.user_id = u.id
-    //                                     LEFT JOIN elements AS e
-    //                                         ON ue.element_id = e.id
-    //                 GROUP BY u.id, u.username'
-    //                             );
-    //         $elements->execute(array());
-    //         $data = $elements->fetch();
-    // $elementsWrite = $bdd->prepare(' INSERT INTO ue(user_id, e.id)
-    //                                 Values($_SESSION['username'],$_POST['element']')
 ?>
 
-<?php include('../includes/head.php'); ?>
+<?php 
+    $readElements= $bdd->query('SELECT * FROM elements');
+    $elements = $readElements->fetchAll();
+    if(isset($_POST['titre'])){
+        //si champ rempli, alors on stock
+        $elementsSelected=$_POST['element'];
+
+        $requestSend= bdd->prepare('INSERT INTO user_elements(user_id, element_id)
+                                    Values(?,?)');
+        foreach($elementsSelected as $elementSelected){
+            $requestSend->execute([$userId,$elementSelected]);
+        }
+        
+    }
+?>
 <body>
     <h1>Inscription</h1>
     
@@ -83,18 +78,18 @@ $request->execute([
         <input type="password" name="password" id="password">
         <label for="passwordConfirm">Confirmez votre mot de passe</label>
         <input type="password" name="passwordConfirm" id="passwordConfirm"><br>
-        <input type="checkbox" id="element1" name="element1">
-        <label for="element1"> Feu</label>
-        <input type="checkbox" id="element2" name="element2">
-        <label for="element2"> Eau</label>
-        <input type="checkbox" id="element3" name="element3">
-        <label for="element3"> Lumière</label>
-        <input type="checkbox" id="element4" name="element4">
-        <label for="element4"> Air</label>
-        <input type="checkbox" id="element5" name="element5">
-        <label for="element5"> Terre</label><br>
-        <button>s'inscrire</button>
     </form>
+
+    
+     <form action="subscribe.php" method="post">
+        <!-- JE BOUCLE MA LISTE DES ELEMENTS DE BDD POUR EN FAIRE AUTANT DE CHECKBOX -->
+        <?php foreach($elements as $element) : ?>
+            <label for="<?= $element['nom'] ?>"><?= $element['nom'] ?></label>
+            <input type="checkbox" id="<?= $element['nom'] ?>" name="element[]" value="<?= $element['id'] ?>">
+        <?php endforeach ?>
+
+        <button>Register</button>
+     </form>
 
     <?php include('footer.php')?>
 </body>

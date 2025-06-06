@@ -1,5 +1,6 @@
-<?php include('../academie/app/includes/nav.php');
-include('../academie/app/includes/head.php');
+<?php include_once('../academie/app/includes/head.php');
+include('../academie/app/includes/nav.php');
+
 var_dump($_SESSION)?>
 
 <!DOCTYPE html>
