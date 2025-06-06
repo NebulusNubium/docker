@@ -34,11 +34,22 @@ $request->execute([
     'role'     => 'user'
 ]);
 $userId = $bdd->lastInsertId();
-    header('location:/academie/index.php?success=4');}else{
+    if(isset($_POST['element'])){
+        //si champ rempli, alors on stock
+        $elementsSelected=$_POST['element'];
+
+        $requestSend= $bdd->prepare('INSERT INTO user_elements(user_id, element_id)
+                                    VALUES (?, ?)');
+        foreach($elementsSelected as $elementSelected){
+            $requestSend->execute([$userId,$elementSelected]);
+        }
+
+    }
+    header('location:/academie/index.php?success=4');
+}else{
         header('location:subscribe.php?error=1');
     }
-    } 
-$userId = $bdd->lastInsertId();
+    }
     if(isset($_GET['error'])){ 
         switch($_GET['error']){
                 case 1:
@@ -54,17 +65,6 @@ $userId = $bdd->lastInsertId();
 <?php 
     $readElements= $bdd->query('SELECT * FROM elements');
     $elements = $readElements->fetchAll();
-    if(isset($_POST['titre'])){
-        //si champ rempli, alors on stock
-        $elementsSelected=$_POST['element'];
-
-        $requestSend= bdd->prepare('INSERT INTO user_elements(user_id, element_id)
-                                    Values(?,?)');
-        foreach($elementsSelected as $elementSelected){
-            $requestSend->execute([$userId,$elementSelected]);
-        }
-        
-    }
 ?>
 <body>
     <h1>Inscription</h1>
@@ -78,18 +78,15 @@ $userId = $bdd->lastInsertId();
         <input type="password" name="password" id="password">
         <label for="passwordConfirm">Confirmez votre mot de passe</label>
         <input type="password" name="passwordConfirm" id="passwordConfirm"><br>
-    </form>
 
-    
-     <form action="subscribe.php" method="post">
         <!-- JE BOUCLE MA LISTE DES ELEMENTS DE BDD POUR EN FAIRE AUTANT DE CHECKBOX -->
         <?php foreach($elements as $element) : ?>
             <label for="<?= $element['nom'] ?>"><?= $element['nom'] ?></label>
             <input type="checkbox" id="<?= $element['nom'] ?>" name="element[]" value="<?= $element['id'] ?>">
         <?php endforeach ?>
 
-        <button>Register</button>
-     </form>
+        <button type="submit">Register</button>
+    </form>
 
     <?php include('footer.php')?>
 </body>
