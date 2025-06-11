@@ -1,7 +1,5 @@
 <?php
-if(isset($_SESSION)){
-    echo 'Hi!';
-}else{session_start();}
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 $bdd = new PDO('mysql:host=mysql;dbname=academie;charset=utf8', 'root', 'root');
 ob_start();
